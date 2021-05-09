@@ -23,8 +23,8 @@ get_header();
 			<!-- Hero -->
 
 			<div class="hero">
-				<div class="hero-inner container">
-					<div class="hero-text">
+				<div class="container hero-inner">
+					<div class="hero-content">
 						<h1 class="hero-title">We are <span class="text-highlight">localization</span> <span class="text-underline"><?php the_title(); ?></span></h1>
 						<p class="hero-description">In <span class="text-highlight"><?php bloginfo('name'); ?></span> we offer integral multimedia localization services in any language</p>
 						<button class="primary-button">Ask for the reel!</button>
@@ -44,10 +44,12 @@ get_header();
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<div class="intro">
-				<div class="container section-inner">
-					<video autoplay muted loop=infinite>
-						<source src="<?php bloginfo('template_url'); ?>/assets/locncap-starfox.mp4" type="video/mp4">
-					</video>
+				<div class="container section-inner-half">
+					<div class="intro-video">
+						<video autoplay muted loop=infinite>
+							<source src="<?php bloginfo('template_url'); ?>/assets/locncap-starfox.mp4" type="video/mp4">
+						</video>
+					</div>
 					<div class="text-block">
 						<h2 class="section-title"><?php the_title(); ?></h2>
 						<p class="section-description"><?php the_content(); ?></p>
@@ -63,7 +65,7 @@ get_header();
 		<!-- Services -->
 
 		<div class="services">
-			<div class="container">
+			<div class="container section-inner-full">
 				<h2 class="section-title">What we <span class="text-highlight">offer</span></h2>
 				<div class="services-grid">
 					<?php query_posts('posts_per_page=20&category_name=services&order=asc'); ?>
@@ -101,14 +103,16 @@ get_header();
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<div class="about">
-				<div class="container section-inner">
+				<div class="container section-inner-half">
+					<div class="about-video">
+						<video autoplay muted loop=infinite>
+							<source src="<?php bloginfo('template_url'); ?>/assets/locncap-ninjas.mov">
+						</video>
+					</div>
 					<div class="text-block">
 						<h2 class="section-title"><?php the_title(); ?></h2>
 						<p class="section-description"><?php the_content(); ?></p>
 					</div>
-					<video autoplay muted loop=infinite>
-						<source src="<?php bloginfo('template_url'); ?>/assets/locncap-ninjas.mov">
-					</video>
 				</div>
 			</div>
 
@@ -123,7 +127,7 @@ get_header();
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<div class="requirements">
-				<div class="container section-inner">
+				<div class="container section-inner-left">
 					<div class="text-block">
 						<h2 class="section-title"><?php the_title(); ?></h2>
 						<p class="section-description"><?php the_content(); ?></p>
@@ -139,5 +143,4 @@ get_header();
 
 	</main><!-- #main -->
 
-<?php
-get_footer();
+

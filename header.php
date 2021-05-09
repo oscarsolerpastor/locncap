@@ -28,7 +28,7 @@
 
 	<header id="masthead" class="site-header">
 
-		<div class="header-inner container">
+		<div class="container header-inner">
 
 			<div class="site-branding">
 				<img src="<?php bloginfo('template_url'); ?>/assets/locncap-logo.svg" class="logo">
