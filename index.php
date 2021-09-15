@@ -46,7 +46,7 @@ get_header();
 			<div class="intro">
 				<div class="container section-inner-half">
 					<div class="intro-video">
-						<video autoplay muted loop=infinite>
+						<video class="#video-play" muted loop=infinite>
 							<source src="<?php bloginfo('template_url'); ?>/assets/locncap-starfox.mp4" type="video/mp4">
 						</video>
 					</div>
@@ -105,7 +105,7 @@ get_header();
 			<div class="about">
 				<div class="container section-inner-half">
 					<div class="about-video">
-						<video autoplay muted loop=infinite>
+						<video id="video-play" muted loop=infinite>
 							<source src="<?php bloginfo('template_url'); ?>/assets/locncap-ninjas.mov">
 						</video>
 					</div>
@@ -121,9 +121,22 @@ get_header();
 			endif;
 		?>
 
+		<!-- Contact -->
+
+
+		<div class="contact">
+			<div class="container section-inner-half">
+				<div class="text-block">
+					<p>👋🏻</p>
+					<h2 class="section-title">Send us a message to <a href="mailto:hola@locncapture.com">hola@locncapture.com</a> and tell us what you need.</h2>
+				</div>
+			</div>
+		</div>
+
+
 		<!-- Requirements -->
 
-		<?php query_posts('posts_per_page=1&post_type=requirement'); ?>
+		<!-- <?php query_posts('posts_per_page=1&post_type=requirement'); ?>
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<div class="requirements">
@@ -138,9 +151,12 @@ get_header();
 		<?php
 			endwhile;
 			endif;
-		?>
+		?> -->
 		
 
 	</main><!-- #main -->
+
+	<?php
+	get_footer();
 
 

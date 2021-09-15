@@ -22,11 +22,13 @@
 		?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<!-- <div class="entry-content">
 		<?php
 			the_content();
 		?>
-	</div><!-- .entry-content -->
+	</div> -->
+	
+	
 
 	</article><!-- #post-<?php the_ID(); ?> -->
 </div>

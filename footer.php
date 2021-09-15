@@ -12,18 +12,22 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'locncapture' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'locncapture' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'locncapture' ), 'locncapture', '<a href="http://underscores.me/">Óscar Soler</a>' );
-				?>
+		<div class="site-info container">
+		<div class="footer-content">
+			<div class="footer-logo">
+				<img src="<?php bloginfo('template_url'); ?>/assets/locncap-logo-white.svg" class="logo"></div>
+			<div class="footer-legal">
+				<div>
+					<p>Loc & Capture <?php echo date("Y"); ?> &copy; All rights reserved.</p>
+				</div>
+				<div>
+					<a href="">Terms and conditions</a>
+				</div>
+				<div>
+					<a href="https://www.linkedin.com/company/locncapture/"><img src="<?php bloginfo('template_url'); ?>/assets/linkedin-logo.svg"></a>
+				</div>
+				
+			</div>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
