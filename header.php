@@ -26,13 +26,19 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'locncapture' ); ?></a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead">
 
 		<div class="container header-inner">
 
 			<div class="site-branding">
-				<img src="<?php bloginfo('template_url'); ?>/assets/locncap-logo.svg" class="logo">
+				<a href="<?php echo get_site_url(); ?>">
+					<img src="<?php bloginfo('template_url'); ?>/assets/locncap-logo.svg" class="logo">
+				</a>
 			</div><!-- .site-branding -->
+
+			<a href="#" class="toggle-nav"> 
+				<img src="<?php bloginfo('template_url'); ?>/assets/toggle.svg">
+			</a>
 
 			<nav id="site-navigation" class="main-navigation">
 				<?php
@@ -43,10 +49,16 @@
 					)
 				);
 				?>
+
+				<div class="language-select">
+					<a lang="en-US" hreflang="en-US" href="<?php echo site_url(''); ?>">EN</a>
+					|
+					<a lang="es-ES" hreflang="es-ES" href="<?php echo site_url('/es'); ?>">ES</a>
+				</div>
+
 			</nav><!-- #site-navigation -->
 			
-			<!-- todo: make this work -->
-			<div class="language-select">EN | ES</div>
+			
 
 		</div>
 

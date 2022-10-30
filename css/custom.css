@@ -2,6 +2,24 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;600;900&display=swap");
 
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+h1,
+h2,
+h3,
+p,
+section .animate video,
+section .animate img,
+button {
+  opacity: 0;
+}
 /* Variables */
 
 :root {
@@ -59,9 +77,6 @@ a {
   color: var(--charcoal);
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
-}
 
 /* Button */
 
@@ -75,12 +90,55 @@ button {
   border-radius: 0.5em;
   box-shadow: 0.5em 0.5em 0 var(--charcoal);
   transition: 0.3s;
+  cursor: pointer;
 }
 button:hover {
   transform: translate(-0.25em, -0.25em);
   box-shadow: 0.75em 0.75em 0 var(--charcoal);
 }
 
+@media only screen and (min-width: 480px) {
+  button {
+    font-size: 1.4rem;
+  }
+}
+
+/* Input */
+
+input {
+  font-size: 1rem;
+  color: var(--charcoal);
+  padding: 1.5em;
+  border: 1px solid var(--charcoal);
+  background-color: white;
+  border-radius: 0.5em;
+  transition: 0.3s;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+input[type="submit"] {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--charcoal);
+  padding: 1em;
+  border: none;
+  background-color: var(--gold);
+  border-radius: 0.5em;
+  transition: 0.3s;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-top: 1em;
+}
+
+@media only screen and (min-width: 480px) {
+  input[type="submit"] {
+    font-size: 1.4rem;
+  }
+}
 /* Container */
 
 .container {
@@ -90,8 +148,16 @@ button:hover {
 
 /* Header */
 
-.site-header {
+header {
   padding: 2em 0;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 99999;
+  transition: padding 0.4s;
+}
+header.scrolled {
+  padding: 1em 0;
 }
 .header-inner {
   display: flex;
@@ -105,32 +171,61 @@ button:hover {
 .logo {
   display: block;
   width: 15em;
+  transition: width 0.4s;
 }
-.language-select {
+.logo.scrolled {
+  width: 14em !important;
+}
+/* .language-select {
   display: none;
-}
-@media only screen and (min-width: 768px) {
+} */
+@media only screen and (min-width: 960px) {
   .logo {
     width: 20em;
   }
   .language-select {
-    width: 20em;
     text-align: right;
+    margin-left: 2em;
+    font-weight: 600;
   }
 }
 
 /* Menu */
 
-.menu {
+.site-branding {
+  z-index: 1;
+}
+
+.main-navigation {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  transform: translate(+100vw, 0);
+  transition: transform 0.4s ease-out;
+}
+.main-navigation.open {
+  transform: translate(0, 0);
+}
+.toggle-nav {
+  z-index: 1;
+}
+.menu {
   padding: 0;
   margin: 0;
   list-style: none;
-  display: none;
+  padding-top: 1em;
 }
 .menu-item {
   margin: 0 10px;
   text-transform: lowercase;
+  font-size: 1.5rem;
   font-weight: 900;
   text-align: center;
 }
@@ -149,7 +244,29 @@ button:hover {
 .menu-item:hover:after {
   opacity: 1;
 }
-
+@media only screen and (min-width: 1024px) {
+  .menu-item {
+    font-size: 1rem;
+  }
+  .main-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    top: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    background-color: white;
+    transform: none;
+  }
+  .toggle-nav {
+    display: none;
+  }
+  ul#primary-menu {
+    display: flex;
+  }
+}
 /* Text */
 
 .text-highlight {
@@ -167,10 +284,11 @@ button:hover {
 /* Hero */
 
 .hero {
-  padding-bottom: 4em;
+  padding: 8em 0 4em;
 }
 .hero-inner {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   padding: 0 2em;
@@ -178,6 +296,7 @@ button:hover {
 .hero-content {
   max-width: 35em;
   padding-bottom: 2em;
+  z-index: 1;
 }
 .hero-content .hero-title {
   font-size: 3rem;
@@ -191,35 +310,15 @@ button:hover {
   padding-bottom: 2em;
 }
 .hero-image {
-  position: absolute;
-  z-index: -1;
+  display: block;
+  min-width: 20em;
+  position: relative;
 }
 .hero-image img {
   max-width: 100%;
   max-height: 100%;
+  pointer-events: none;
 }
-/* .hero-image:before {
-    content: url(../assets/play-icon.svg);
-    width: 186px;
-    height: 186px;
-    top: 8em;
-    left: 4em;
-    position: absolute;
-    transition: 0.3s;
-}
-.hero-image:hover:before {
-    animation: rotate 3s linear infinite;
-}
-@keyframes rotate {
-    to {
-      transform: rotate(359deg);
-    }
-  }
-  @keyframes rotate-rev {
-    to {
-      transform: rotate(-359deg);
-    }
-  } */
 @media only screen and (min-width: 480px) {
   .hero-content .hero-title {
     font-size: 4rem;
@@ -227,14 +326,11 @@ button:hover {
   .hero-content .hero-description {
     font-size: 1.5rem;
   }
-  .hero-image {
-    display: block;
-    min-width: 35em;
-    right: 6em;
-    position: relative;
-  }
 }
 @media only screen and (min-width: 768px) {
+  .hero-inner {
+    flex-direction: row;
+  }
   .hero-content .hero-title {
     font-size: 4.5rem;
   }
@@ -243,7 +339,6 @@ button:hover {
   }
   .hero-image {
     min-width: 45em;
-    right: 8em;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -255,7 +350,6 @@ button:hover {
   }
   .hero-image {
     min-width: 50em;
-    right: 0;
   }
 }
 /* Section */
@@ -287,19 +381,31 @@ button:hover {
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0;
+}
+.section-description {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  margin-top: 2em;
+  max-width: 40em;
+}
+.contact-title {
+  font-size: 1.5rem;
   line-height: 1;
   /* text-transform: lowercase; */
   margin: 0;
 }
-.section-description {
-  font-size: 1.25rem;
-  font-weight: 300;
-  line-height: 1.75;
-  margin-top: 2em;
-  max-width: 32em;
+@media only screen and (min-width: 480px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+  .section-description {
+    font-size: 1.25rem;
+  }
 }
-
 @media only screen and (min-width: 768px) {
   .section-title {
     font-size: 4.5rem;
@@ -307,21 +413,24 @@ button:hover {
   .section-description {
     font-size: 1.125rem;
   }
+  .contact-title {
+    font-size: 3rem;
+  }
 }
 
 /* Intro */
 
-.intro {
+.services {
   color: white;
   background-color: var(--charcoal);
   padding: 4em 0;
 }
-.intro .intro-video {
+.services .services-video {
   width: 100%;
   max-width: 45em;
   padding-bottom: 2em;
 }
-.intro video {
+.services video {
   max-width: 100%;
   border-radius: 1em;
   box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.1), 0 14px 12px 0 rgba(0, 0, 0, 0.1),
@@ -329,42 +438,143 @@ button:hover {
     0 88px 64px -16px rgba(0, 0, 0, 0.1);
 }
 @media only screen and (min-width: 960px) {
-  .intro {
+  .services {
     background-color: var(--charcoal);
     color: white;
     padding: 8em 0;
   }
-  .intro .intro-video {
+  .services .services-video {
     padding-bottom: 0;
     transform: translateX(-120px) scale(1.25);
   }
-  .intro video {
+  .services video {
     min-width: 520px;
   }
 }
 
-/* Services */
+/* Players */
+.characters {
+  padding: 4em 0;
+}
+.videogame {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4em;
+}
+.videogame .players {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(33.3%, 1fr));
+  grid-auto-rows: auto;
+  grid-gap: 0 1em;
+  grid-template-areas:
+    "player-1 player-2 player-3"
+    "player-4 player-5 player-6"
+    "player-7 player-8 player-9";
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.player {
+  cursor: pointer;
+  grid-area: player;
+  position: relative;
+  display: inline-block;
+}
+.player img {
+  width: 100%;
+  max-height: 200px;
+}
+.player-1 {
+  grid-area: player-1;
+}
+.player-2 {
+  grid-area: player-2;
+}
+.player-3 {
+  grid-area: player-3;
+}
+.player-4 {
+  grid-area: player-4;
+}
+.player-5 {
+  grid-area: player-5;
+}
+.player-6 {
+  grid-area: player-6;
+}
+.player-7 {
+  grid-area: player-7;
+}
+.player-8 {
+  grid-area: player-8;
+}
+.player-9 {
+  grid-area: player-9;
+}
+.player .featured-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.player .featured-player:hover,
+.featured-player.active {
+  opacity: 0;
+}
+.videogame .choosed-player {
+  width: auto;
+  position: relative;
+  bottom: 0;
+}
+.choosed-player {
+  grid-area: choosed-player;
+}
+.choosed-player video {
+  max-height: 575px;
+  width: 100%;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 960px) {
+  .choosed-player video {
+    margin: 2.3em auto 0;
+  }
+}
+.choosed-player .card {
+  position: absolute;
+  bottom: 6em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 35em;
+  padding: 0.5em 2em;
+  background-color: var(--charcoal);
+  border: 0.5em solid var(--gold);
+  color: var(--gold);
+}
+/* Offer */
 
-.services {
+.offer {
   padding: 4em 0;
   background-color: var(--pearl);
 }
-.services-grid {
+.offer-grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2em;
   margin-top: 4em;
 }
 @media only screen and (min-width: 768px) {
-  .services {
+  .offer {
     padding: 8em 0;
   }
-  .services-grid {
+  .offer-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 @media only screen and (min-width: 1024px) {
-  .services-grid {
+  .offer-grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -372,11 +582,16 @@ button:hover {
 /* Card */
 
 .card {
-  padding: 4em;
+  padding: 2em;
   border-radius: 1.25em;
   background-color: white;
   transition: 0.3s;
   text-align: center;
+}
+@media only screen and (min-width: 960px) {
+  .card {
+    padding: 4em;
+  }
 }
 .card:hover {
   transform: translateY(-8px);
@@ -491,7 +706,14 @@ button:hover {
   font-size: 4rem;
 }
 .contact p {
-  font-size: 4rem;
+  padding-top: 1em;
+  font-size: 0.95rem;
+}
+@media only screen and (min-width: 960px) {
+  .contact p {
+    padding-top: 2em;
+    font-size: 1.2rem;
+  }
 }
 .contact a {
   color: var(--gold);
@@ -499,6 +721,45 @@ button:hover {
 }
 .contact a:hover {
   text-decoration: underline;
+}
+.wave {
+  font-size: 2rem;
+  animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s; /* Change to speed up or slow down */
+  animation-iteration-count: infinite; /* Never stop waving :) */
+  transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+@media only screen and (min-width: 960px) {
+  .wave {
+    font-size: 4rem;
+  }
+}
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  } /* The following five values can be played with to make the waving more or less extreme */
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  } /* Reset for the last half to pause */
+  100% {
+    transform: rotate(0deg);
+  }
 }
 /* Footer */
 
@@ -546,4 +807,94 @@ footer .logo {
     padding-top: 0;
     margin-left: 0.8em;
   }
+}
+
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 99999;
+  position: fixed;
+  text-align: center;
+  display: none;
+}
+.modal-open {
+  visibility: visible;
+}
+.modal video {
+  position: relative;
+  width: 80%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 4em;
+}
+.modal-close {
+  color: #ffffff;
+  position: absolute;
+  font-size: 2em;
+  top: 0.5em;
+  right: 1em;
+  cursor: pointer;
+}
+.modal-trigger {
+  content: url(../assets/play-icon.svg);
+  width: 25%;
+  height: 25%;
+  bottom: 50%;
+  left: 7.5%;
+  position: absolute;
+  transition: 0.3s;
+  display: block;
+  animation: rotate 4s linear infinite;
+  cursor: pointer;
+  z-index: 1;
+}
+@keyframes rotate {
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes rotate-rev {
+  to {
+    transform: rotate(-359deg);
+  }
+}
+@media only screen and (min-width: 768px) {
+  .modal-trigger {
+    width: 160px;
+    height: 160px;
+    bottom: 22.5em;
+    left: 5em;
+  }
+  @media only screen and (min-width: 1024px) {
+    .modal-trigger {
+      width: 180px;
+      height: 180px;
+      bottom: 25em;
+      left: 5em;
+    }
+  }
+}
+
+.page-content {
+  max-width: 35em;
+  z-index: 1;
+  margin: 0 auto;
+  padding: 12em 2em;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Form */
+
+input.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required {
+  height: 2.4em;
+  border-radius: 0.4em;
 }

@@ -18,10 +18,10 @@
 				<img src="<?php bloginfo('template_url'); ?>/assets/locncap-logo-white.svg" class="logo"></div>
 			<div class="footer-legal">
 				<div>
-					<p>Loc & Capture <?php echo date("Y"); ?> &copy; All rights reserved.</p>
+					<p>Loc & Capture <?php echo date("Y"); ?> &copy; <?php pll_e('All rights reserved'); ?>.</p>
 				</div>
 				<div>
-					<a href="">Terms and conditions</a>
+					<a href="<?php echo site_url('/privacy-policy'); ?>"><?php pll_e('Terms and conditions'); ?></a>
 				</div>
 				<div>
 					<a href="https://www.linkedin.com/company/locncapture/"><img src="<?php bloginfo('template_url'); ?>/assets/linkedin-logo.svg"></a>

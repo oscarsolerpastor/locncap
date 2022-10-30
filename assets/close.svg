@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>close</title>
+    <g id="close" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#343A40" transform="translate(20.000000, 21.500000) rotate(-315.000000) translate(-20.000000, -21.500000) " x="4" y="20" width="32" height="3" rx="1.5"></rect>
+        <rect id="Rectangle-Copy-2" fill="#343A40" transform="translate(20.000000, 21.500000) rotate(-45.000000) translate(-20.000000, -21.500000) " x="4" y="20" width="32" height="3" rx="1.5"></rect>
+    </g>
+</svg>

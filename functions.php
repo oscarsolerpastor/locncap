@@ -147,6 +147,11 @@ function locncapture_scripts() {
 
 	wp_enqueue_script( 'locncapture-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'locncapture-video', get_template_directory_uri() . '/js/video.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'locncapture-header', get_template_directory_uri() . '/js/header.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'locncapture-animation', get_template_directory_uri() . '/js/animation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'locncapture-manifesto', get_template_directory_uri() . '/js/manifesto.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'locncapture-toggle', get_template_directory_uri() . '/js/toggle.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'locncapture-videogame', get_template_directory_uri() . '/js/videogame.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -237,4 +242,21 @@ function add_requirement() {
 
 }
 add_action( 'init', 'add_requirement', 0 );
+
+//Strings translations
+add_action('init', function() {
+	pll_register_string('ask_reel', 'Ask for the reel!');
+	pll_register_string('in', 'In');
+	pll_register_string('localization_services', 'we offer integral multimedia localization services in any language');
+	pll_register_string('choose_your', 'Choose your');
+	pll_register_string('player', 'player');
+	pll_register_string('what_we', 'What we');
+	pll_register_string('offer', 'offer');
+	pll_register_string('send_message', 'Send us a message to');
+	pll_register_string('what_you_need', 'and tell us what you need');
+	pll_register_string('visit_us', 'Visit us at');
+	pll_register_string('rights', 'All rights reserved');
+	pll_register_string('terms', 'Terms and conditions');
+	pll_register_string('not_found', 'Oops! That page can&rsquo;t be found');
+  });
 

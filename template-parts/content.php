@@ -16,11 +16,11 @@
 		locncapture_post_thumbnail();
 	?>
 
-	<header class="entry-header">
+	<h3 class="entry-header">
 		<?php
 			the_title();
 		?>
-	</header><!-- .entry-header -->
+	</h3><!-- .entry-header -->
 
 	<!-- <div class="entry-content">
 		<?php
